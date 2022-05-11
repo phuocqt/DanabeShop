@@ -4,6 +4,7 @@ import { Box, Skeleton, Typography } from '../../../../../node_modules/@mui/mate
 
 function Product({ product }) {
   const thumbnailUrl = product.thumbnail ? `${STATIC_HOST}${product.thumbnail?.url}` : THUMBNAIL_PLACEHOLDER;
+
   return (
     <Box padding={1} display="flex" flexDirection="column" justifyContent="flex-start">
       <Box padding={1} minHeight="215px">
