@@ -3,12 +3,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-function ProductSort({ sort, onchange }) {
+function ProductSort({ sort, onChange }) {
   const [value, setValue] = useState(sort);
 
   const handleChange = (event, value) => {
     setValue(value);
-    onchange(value);
+    onChange(value);
   };
   return (
     <Box sx={{ width: '100%' }}>

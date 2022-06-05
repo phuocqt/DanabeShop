@@ -1,18 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Routes, Route } from 'react-router-dom';
-
+import { Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '../../../node_modules/@mui/material/index';
+import DetailPage from './Pages/DetailPage';
 import ListPage from './Pages/ListPage';
 
 ProductFeature.propTypes = {};
 
 function ProductFeature(props) {
+  const location = useLocation();
+
+  // const productID = location.
+
   return (
     <Box pt={4}>
-      <Routes>
-        <Route path="" element={<ListPage />} />
-      </Routes>
+      <Outlet />
     </Box>
   );
 }

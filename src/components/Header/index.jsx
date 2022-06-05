@@ -1,13 +1,8 @@
 import { Close } from '@mui/icons-material';
-import { default as AccountCircle, default as AccountCircleIcon } from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { default as AccountCircleIcon } from '@mui/icons-material/AccountCircle';
 import PrecisionManufacturingOutlinedIcon from '@mui/icons-material/PrecisionManufacturingOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -22,12 +17,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import Login from 'features/Auth/components/Login/index';
-import { logout } from 'features/Auth/userSlice';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Register from '../../features/Auth/components/Register';
+import { logout } from '../../features/Auth/userSlice';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -158,8 +153,8 @@ export default function Header() {
             <NavLink to="/todos" activeClassName="active-menu" className={classes.link}>
               <Button color="inherit">Todos</Button>
             </NavLink>
-            <NavLink to="/albums" activeClassName="active-menu" className={classes.link}>
-              <Button color="inherit">Albums</Button>
+            <NavLink to="/products" activeClassName="active-menu" className={classes.link}>
+              <Button color="inherit">Products</Button>
             </NavLink>
             {isLoggedIn && (
               <IconButton

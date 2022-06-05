@@ -4,9 +4,9 @@ import TodoList from './components/TodoList';
 
 function Todo() {
   const [todoList, setTodoList] = useState([
-    { id: 1, title: 'I love Easy Frontend! 😍 ', status: 'new' },
-    { id: 2, title: 'We love Easy Frontend! 🥰 ', status: 'completed' },
-    { id: 3, title: 'They love Easy Frontend! 🚀 ', status: 'new' },
+    { id: 1, title: 'Code DanabeeShop! 😍 ', status: 'new' },
+    { id: 2, title: 'Have fun with Love! 🥰 ', status: 'completed' },
+    { id: 3, title: 'Happy dinner 🚀 ', status: 'new' },
   ]);
   function handleTodoClick(todo, idx) {
     const newTodoList = [...todoList];

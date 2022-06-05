@@ -1,5 +1,7 @@
+import axiosClient from './axiosClient';
+
 const categoryApi = {
-  getall(params) {
+  getAll(params) {
     const url = '/categories';
     return axiosClient.get(url, { params });
   },
@@ -12,7 +14,7 @@ const categoryApi = {
     return axiosClient.post(url, data);
   },
   update(data) {
-    const url = `/categories/${data.d}`;
+    const url = `/categories/${data.id}`;
     return axiosClient.patch(url, data);
   },
   remove(id) {

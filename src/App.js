@@ -1,5 +1,7 @@
 import ProductFeature from 'features/Product/index';
-import { Route, Routes } from 'react-router-dom';
+import DetailPage from 'features/Product/Pages/DetailPage';
+import ListPage from 'features/Product/Pages/ListPage';
+import { Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import AlbumFeature from './features/Album';
@@ -9,8 +11,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-
-      {/* <CounterFeature /> */}
       <Routes>
         <Route path="/todos" element={<TodoFeature />} />
       </Routes>
@@ -18,7 +18,10 @@ function App() {
         <Route path="/albums" element={<AlbumFeature />} />
       </Routes>
       <Routes>
-        <Route path="/products" element={<ProductFeature />} />
+        <Route path="/products" element={<ProductFeature />}>
+          <Route path="/products" element={<ListPage />} />
+          <Route path="/products/:productId" element={<DetailPage />} />
+        </Route>
       </Routes>
     </div>
   );

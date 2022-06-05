@@ -25,7 +25,7 @@ const AlbumList = [
 function Album(props) {
   return (
     <div>
-      <ul>
+      <ul className="album">
         {AlbumList.map((album) => {
           return (
             <li key={album.id}>
