@@ -30,7 +30,11 @@ const useStyles = makeStyles(() => ({
 }));
 AddtocartForm.propTypes = {};
 const schema = yup.object().shape({
-  quantity: yup.number().required('Please chose the quantity'),
+  quantity: yup
+    .number()
+    .min(1, 'please enter at least 1')
+    .required('Please chose the quantity')
+    .typeError('Please enter a number'),
 });
 function AddtocartForm(props) {
   const classes = useStyles(props);

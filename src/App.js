@@ -1,3 +1,4 @@
+import Cart from 'features/Cart';
 import ProductFeature from 'features/Product/index';
 import DetailPage from 'features/Product/Pages/DetailPage';
 import ListPage from 'features/Product/Pages/ListPage';
@@ -13,15 +14,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/todos" element={<TodoFeature />} />
-      </Routes>
-      <Routes>
-        <Route path="/albums" element={<AlbumFeature />} />
-      </Routes>
-      <Routes>
         <Route path="/products" element={<ProductFeature />}>
           <Route path="/products" element={<ListPage />} />
-          <Route path="/products/:productId" element={<DetailPage />} />
+          <Route path="/products/:productId/*" element={<DetailPage />} />
         </Route>
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

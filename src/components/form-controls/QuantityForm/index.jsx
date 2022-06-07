@@ -37,10 +37,14 @@ function QuantityForm(props) {
           <FormControl
             margin="normal"
             variant="outlined"
+            fullWidth
             error={invalid}
             helperText={error?.message}
+            onChange={onChange}
+            onBlur={onBlur}
             name={name}
             value={value}
+            disabled={disable}
             sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
           >
             <RemoveCircleOutlineOutlinedIcon
@@ -50,7 +54,7 @@ function QuantityForm(props) {
               }}
             />
 
-            <OutlinedInput size="small" value={value} id={name} type={'number'} sx={{ maxWidth: '150px' }} />
+            <OutlinedInput size="small" value={value} id={name} type="number" sx={{ maxWidth: '150px' }} />
             <AddCircleOutlineOutlinedIcon
               sx={{ paddingLeft: '10px' }}
               onClick={() => {

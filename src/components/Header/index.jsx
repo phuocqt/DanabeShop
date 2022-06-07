@@ -20,9 +20,11 @@ import Login from 'features/Auth/components/Login/index';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Register from '../../features/Auth/components/Register';
 import { logout } from '../../features/Auth/userSlice';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -100,6 +102,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -173,6 +176,15 @@ export default function Header() {
                 LOGIN
               </Button>
             )}
+            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={17} color="error">
+                <ShoppingCartIcon
+                  onClick={() => {
+                    navigate('/cart');
+                  }}
+                />
+              </Badge>
+            </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
