@@ -1,6 +1,7 @@
 import { Box, Container, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import React from 'react';
+import { addToCart } from 'features/Cart/cartSlice';
+import { useDispatch } from 'react-redux';
 
 import { Route, Routes, useParams } from 'react-router-dom';
 import AddtocartForm from '../components/AddtocartForm';
@@ -27,12 +28,20 @@ const useStyles = makeStyles({
 });
 
 function DetailPage(props) {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
   const { productId } = useParams();
 
   const { product, loading } = useProductDetail(productId);
   const handleAddToCart = (values) => {
-    console.log(values);
+    const action = addToCart({
+      id: product.id,
+      product,
+      quantity: values.quantity,
+      active: true,
+    });
+    dispatch(action);
   };
 
   return (

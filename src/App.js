@@ -2,10 +2,9 @@ import Cart from 'features/Cart';
 import ProductFeature from 'features/Product/index';
 import DetailPage from 'features/Product/Pages/DetailPage';
 import ListPage from 'features/Product/Pages/ListPage';
-import { Route, Routes, useLocation, useMatch, useParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import AlbumFeature from './features/Album';
 import TodoFeature from './features/Todo';
 
 function App() {
@@ -13,6 +12,8 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
+        <Route path="/" element={<Navigate to="/products" replace />} />
+
         <Route path="/todos" element={<TodoFeature />} />
         <Route path="/products" element={<ProductFeature />}>
           <Route path="/products" element={<ListPage />} />

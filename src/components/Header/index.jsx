@@ -25,6 +25,7 @@ import Register from '../../features/Auth/components/Register';
 import { logout } from '../../features/Auth/userSlice';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from '@mui/material';
+import { cartItemsCount } from 'features/Cart/selector';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -103,6 +104,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const countQuantity = useSelector(cartItemsCount);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -177,7 +179,7 @@ export default function Header() {
               </Button>
             )}
             <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={countQuantity} color="error">
                 <ShoppingCartIcon
                   onClick={() => {
                     navigate('/cart');

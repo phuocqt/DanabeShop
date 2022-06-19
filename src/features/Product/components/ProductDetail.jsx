@@ -37,7 +37,6 @@ const useStyles = makeStyles({
 function ProductDetail({ product = {} }) {
   const classes = useStyles();
   const { name, shortDescription, salePrice, originalPrice, promotionPercent } = product;
-  console.log(product);
   return (
     <Box className={classes.root}>
       <Typography component="h1" variant="h4">

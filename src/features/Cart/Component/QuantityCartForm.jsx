@@ -1,17 +1,13 @@
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Box, FormControl, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { Controller } from 'react-hook-form';
-import FormHelperText from '@mui/material/FormHelperText';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { Box, FormControl, TextField, Typography } from '@mui/material';
+import FormHelperText from '@mui/material/FormHelperText';
+import PropTypes from 'prop-types';
+import { Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeQuantity } from '../cartSlice';
 
-QuantityForm.propTypes = {
+QuantityCartForm.propTypes = {
   form: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
 
@@ -19,9 +15,11 @@ QuantityForm.propTypes = {
   disable: PropTypes.bool,
 };
 
-function QuantityForm(props) {
-  const { form, name, disable } = props;
+function QuantityCartForm(props) {
+  const dispatch = useDispatch();
+  const { form, name, disable, index } = props;
   const { control, setValue } = form;
+  const quantity = useSelector((state) => state.cart.cartItems[index].quantity);
 
   return (
     <Controller
@@ -33,7 +31,6 @@ function QuantityForm(props) {
         formState,
       }) => (
         <Box>
-          <Typography pl={5}>Quantity</Typography>
           <FormControl
             margin="normal"
             variant="outlined"
@@ -50,19 +47,25 @@ function QuantityForm(props) {
             <RemoveIcon
               sx={{ paddingRight: '10px' }}
               onClick={() => {
-                setValue(name, Number.parseInt(value) ? Number.parseInt(value) - 1 : 1);
+                const action = changeQuantity({
+                  index,
+                  quantity: quantity > 0 ? quantity - 1 : 0,
+                });
+                dispatch(action);
               }}
             />
 
-            <TextField size="small" value={value} id={name} sx={{ maxWidth: '150px' }} />
+            <TextField size="small" value={quantity} id={name} sx={{ maxWidth: '150px', minWidth: '50px' }} />
             <AddIcon
               sx={{ paddingLeft: '10px' }}
               onClick={() => {
-                setValue(name, Number.parseInt(value) + 1);
+                const action = changeQuantity({
+                  index,
+                  quantity: quantity >= 99 ? 99 : quantity + 1,
+                });
+                dispatch(action);
               }}
             />
-
-            <FormHelperText error={error}>{error?.message}</FormHelperText>
           </FormControl>
         </Box>
       )}
@@ -70,4 +73,4 @@ function QuantityForm(props) {
   );
 }
 
-export default QuantityForm;
+export default QuantityCartForm;

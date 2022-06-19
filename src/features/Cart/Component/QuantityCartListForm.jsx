@@ -1,17 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import PasswordField from 'components/form-controls/PasswordField/index';
-import QuantityForm from 'components/form-controls/QuantityForm';
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import QuantityCartForm from './QuantityCartForm';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    paddingTop: 40,
-    paddingBottom: 10,
-  },
+  root: {},
 
   avatar: {
     margin: '0 auto',
@@ -28,7 +25,7 @@ const useStyles = makeStyles(() => ({
     right: 0,
   },
 }));
-AddtocartForm.propTypes = {};
+QuantityCartListForm.propTypes = {};
 const schema = yup.object().shape({
   quantity: yup
     .number()
@@ -36,8 +33,8 @@ const schema = yup.object().shape({
     .required('Please chose the quantity')
     .typeError('Please enter a number'),
 });
-function AddtocartForm(props) {
-  const classes = useStyles(props);
+function QuantityCartListForm({ index, onChange }) {
+  const classes = useStyles();
   const form = useForm({
     defaultValues: {
       quantity: 1,
@@ -47,23 +44,18 @@ function AddtocartForm(props) {
     resolver: yupResolver(schema),
   });
   const handleSubmit = (values) => {
-    const { onSubmit } = props;
-    if (onSubmit) {
-      onSubmit(values);
+    if (onChange) {
+      onChange(values);
     }
   };
 
   return (
     <div className={classes.root}>
-      <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <QuantityForm name="quantity" label="quantity" form={form}></QuantityForm>
-
-        <Button type="submit" variant="contained" color="primary" fullWidth size="large">
-          ADD TO CART
-        </Button>
+      <form onChange={form.handleSubmit(handleSubmit)}>
+        <QuantityCartForm index={index} name="quantity" form={form}></QuantityCartForm>
       </form>
     </div>
   );
 }
 
-export default AddtocartForm;
+export default QuantityCartListForm;

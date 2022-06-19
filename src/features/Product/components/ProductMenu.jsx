@@ -16,6 +16,8 @@ const useStyles = makeStyles({
     },
     '&>li>a': {
       color: 'rgb(32,32,32)',
+      cursor: 'pointer',
+      userSelect: 'none',
 
       texDecoration: 'none',
     },
