@@ -15,33 +15,35 @@ function Cart(props) {
 
   return (
     <div>
-      {!product.length ? (
-        <EmptyCart />
-      ) : (
-        <Grid container spacing={1}>
-          <Grid item xs={9} md={9}>
-            <Paper elevation={1}>
-              {product.map((item, index) => (
-                <CartIterm key={index} product={item.product} index={index} onChange={handleChange} />
-              ))}
-            </Paper>
-          </Grid>
-          <Grid item xs={3} md={3} mt={2}>
-            <Paper elevation={1} sx={{ paddingTop: '20px' }}>
-              <Stack direction="column" justifyContent="center" alignItems="stretch" spacing={2}>
-                <Box display="flex" justifyContent="space-between" pl={2} pr={2}>
-                  <Typography>Tổng Tiền:</Typography>
-                  <Box component="span" fontSize="16px">
-                    {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceAll)}
+      <Container>
+        {!product.length ? (
+          <EmptyCart />
+        ) : (
+          <Grid container spacing={1}>
+            <Grid item xs={9} md={9}>
+              <Paper elevation={1}>
+                {product.map((item, index) => (
+                  <CartIterm key={index} product={item.product} index={index} onChange={handleChange} />
+                ))}
+              </Paper>
+            </Grid>
+            <Grid item xs={3} md={3} mt={2}>
+              <Paper elevation={1} sx={{ paddingTop: '20px' }}>
+                <Stack direction="column" justifyContent="center" alignItems="stretch" spacing={2}>
+                  <Box display="flex" justifyContent="space-between" pl={2} pr={2}>
+                    <Typography>Tổng Tiền:</Typography>
+                    <Box component="span" fontSize="16px">
+                      {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(priceAll)}
+                    </Box>
                   </Box>
-                </Box>
 
-                <Button variant="contained">MUA HÀNG</Button>
-              </Stack>
-            </Paper>
+                  <Button variant="contained">MUA HÀNG</Button>
+                </Stack>
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Container>
     </div>
   );
 }
